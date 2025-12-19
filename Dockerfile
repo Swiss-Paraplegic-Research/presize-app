@@ -8,10 +8,12 @@ RUN R -e "install.packages(c('shiny', 'dplyr', 'ggplot2'), repos='https://cloud.
 
 # Copy app files into the container
 COPY app.R /srv/shiny-server/
-COPY ui0 /srv/shiny-server/ui0
+COPY ui /srv/shiny-server/ui
+COPY www /srv/shiny-server/www
 
 # Expose Shiny port
 EXPOSE 3838
 
 # Run Shiny Server
 CMD ["/usr/bin/shiny-server"]
+
