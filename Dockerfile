@@ -1,10 +1,10 @@
 FROM rocker/shiny:4.3.2
 
 # Install system dependencies if needed
-# RUN apt-get update && apt-get install -y libcurl4-openssl-dev
+RUN apt-get update && apt-get install -y libcurl4-openssl-dev
 
 # Install R packages
-RUN R -e "install.packages(c('shiny', 'dplyr', 'ggplot2'), repos='https://cloud.r-project.org')"
+RUN R -e "install.packages(c('shiny', 'shinydashboard', 'dplyr', 'ggplot2', 'otelsdk', 'presize'), repos='https://cloud.r-project.org')"
 
 # Copy app files into the container
 COPY app.R /srv/shiny-server/
@@ -16,4 +16,5 @@ EXPOSE 3838
 
 # Run Shiny Server
 CMD ["/usr/bin/shiny-server"]
+
 
